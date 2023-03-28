@@ -1,5 +1,7 @@
 # ASP.NET DDD & REST API Clean Architecture
+
 >[Reference: Github](https://github.com/amantinband)
+
 >[Reference: Youtube](https://www.youtube.com/playlist?list=PLzYkqgWkHPKBcDIP5gzLfASkQyTdy0t4k)
 
 ## Part 1 - Project Steup
@@ -32,4 +34,14 @@ dotnet build BuberDinner
 ```bash
 # run api
 dotnet run --project BuberDinner/BuberDinner.Api
+```
+
+## Part 2 - Jwt
+1. Application > Create IJwtTokenGenerator interface
+2. Application > Update Service using IJwtTokenGenerator
+3. Infrastructure > Create JwtTokenGenerator
+4. Infrastructure > Update Dependency Injection
+   
+```bash
+dotnet add BuberDinner/BuberDinner.Infrastructure package System.IdentityModel.Tokens.Jwt
 ```
