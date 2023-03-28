@@ -17,3 +17,19 @@ dotnet add BuberDinner.Infrastructure reference BuberDinner.Application
 dotnet add BuberDinner.Application reference BuberDinner.Domain
 dotnet add BuberDinner.Api reference BuberDinner.Infrastructure
 ```
+
+```bash
+# commands used to add Dependency Injection package
+dotnet add BuberDinner/BuberDinner.Application package Microsoft.Extensions.DependencyInjection.Abstractions
+dotnet add BuberDinner/BuberDinner.Infrastructure package Microsoft.Extensions.DependencyInjection.Abstractions
+```
+
+```bash
+# build
+dotnet build BuberDinner
+```
+
+```bash
+# run api
+dotnet run --project BuberDinner/BuberDinner.Api
+```
