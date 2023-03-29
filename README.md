@@ -105,13 +105,16 @@ dotnet user-secrets list --project BuberDinner.Api
 
 ### via Middleware
 1. Api > Create ErrorHandlingMiddleware
-2. Api > app.UseMiddleWare<ErrorHandlingMiddleware>
+2. Api > Update Program.cs > app.UseMiddleWare<ErrorHandlingMiddleware>
 > JsonConvert.SerializeObject(Newtonsoft.Json) >> JsonSerializer.Serialize(System.Text.Json)
 
 ### via FilterAttribute
 1. Api > Create ErrorHandlingFilterAttribute
-2. Api > builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>())
+2. Api > Update Program.cs > builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>())
 ### Problem Details
 >[RFC 7231](https://tools.ietf.org/html/rfc7231#section-6.6.1)
 
 use ProblemDetail Object
+### via ErrorEndpoint
+1. Api > Create ErrorsController
+2. Api > Update Program.cs > app.UseExceptionHandler("/error");
