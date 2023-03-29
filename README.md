@@ -94,3 +94,16 @@ dotnet user-secrets list --project BuberDinner.Api
    2. Api > AuthenticationController
    3. Application > IJwtTokenGenerator
    4. Infrastructure >  JwtTokenGenerator
+
+## Part 4 - Error Handling
+1. via Middleware
+2. via exception filter attribute
+3. Problem Details
+4. via error endpoint
+5. Custom Problem Details Factory
+> 4 + 5 Works great! (from Amichai Mantinband)
+
+### via Middleware
+1. Api > Create ErrorHandlingMiddleware
+2. Api > app.UseMiddleWare<ErrorHandlingMiddleware>
+> JsonConvert.SerializeObject(Newtonsoft.Json) >> JsonSerializer.Serialize(System.Text.Json)
