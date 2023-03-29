@@ -118,3 +118,6 @@ use ProblemDetail Object
 ### via ErrorEndpoint
 1. Api > Create ErrorsController
 2. Api > Update Program.cs > app.UseExceptionHandler("/error");
+### using Custom Problem Details Factory
+1. Api > Create ProblemDetailFactory
+2. Api > Update Program.cs > builder.Services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
