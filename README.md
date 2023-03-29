@@ -131,3 +131,13 @@ use ProblemDetail Object
 2. via OneOf
 3. via FluentResults
 4. via ErrorOr & Domain Errors
+
+### via OneOf
+```bash
+dotnet add BuberDinner.Application package oneof
+```
+1. Application > Create DuplicateEmailError
+2. Application > Update IAuthenticationService
+3. Application > Update AuthenticationService
+4. Api > Update AuthenticationController
+>Rust의 Result<Result, Error>와 매우 유사함
