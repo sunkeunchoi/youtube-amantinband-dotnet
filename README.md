@@ -79,3 +79,18 @@ dotnet user-secrets init --project BuberDinner.Api
 dotnet user-secrets set --project BuberDinner.Api "JwtSettings:Secret" "super-secret-key-from-user-secrets"
 dotnet user-secrets list --project BuberDinner.Api
 ```
+## Part 3 - Repository Pattern
+1. Separation benefits (Real DB, InMemory DB)
+2. Query optimization (Specification Pattern?) 
+   1. eg: ConfirmedCounts, PendingCounts, DeclinedCounts등을 호출 할때 모든 Records를 불러 온 뒤 Counts 보다는 single SQL로 처리하는게 효율적이다. 그러나 그렇게 되면 너무 많은 Methods들이 생긴다
+
+### User Entity and UserRepository
+1. Domain > Create User Entity
+2. Application > Create IUserRepository Interface (Define methods)
+3. Application > Update Authentication Service 
+4. Infrastructure > Create UserRepository
+5. Refactor using User Entity
+   1. Application > AuthenticationResult
+   2. Api > AuthenticationController
+   3. Application > IJwtTokenGenerator
+   4. Infrastructure >  JwtTokenGenerator
