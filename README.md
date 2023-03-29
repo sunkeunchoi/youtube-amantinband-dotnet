@@ -141,3 +141,5 @@ dotnet add BuberDinner.Application package oneof
 3. Application > Update AuthenticationService
 4. Api > Update AuthenticationController
 >Rust의 Result<Result, Error>와 매우 유사함
+
+Need interface to handle more than one errors
