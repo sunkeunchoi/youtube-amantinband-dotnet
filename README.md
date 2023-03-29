@@ -121,3 +121,10 @@ use ProblemDetail Object
 ### using Custom Problem Details Factory
 1. Api > Create ProblemDetailFactory
 2. Api > Update Program.cs > builder.Services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
+> Question?? What should I use for aws lambda route per function??
+
+## Part 5 - Flow Control
+1. via Exceptions (not recommended)
+2. via OneOf
+3. via FluentResults
+4. via ErrorOr & Domain Errors
