@@ -10,15 +10,15 @@ public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
   public override void OnException(ExceptionContext context)
   {
     var exception = context.Exception;
-    context.Result = new ObjectResult(new { error = exception.Message })
+    var problemDetails = new ProblemDetails
     {
-      StatusCode = (int)HttpStatusCode.InternalServerError
+      Title = "An error occurred while processing your request.",
+      Status = (int)HttpStatusCode.InternalServerError,
+      Detail = exception.Message,
+      Instance = context.HttpContext.Request.Path,
+      Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
     };
+    context.Result = new ObjectResult(problemDetails);
     context.ExceptionHandled = true;
-    // var response = context.HttpContext.Response;
-    // response.ContentType = "application/json";
-    // response.StatusCode = (int)HttpStatusCode.InternalServerError;
-    // var result = JsonSerializer.Serialize(new { error = exception.Message });
-    // response.WriteAsync(result);
   }
 }

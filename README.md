@@ -111,3 +111,7 @@ dotnet user-secrets list --project BuberDinner.Api
 ### via FilterAttribute
 1. Api > Create ErrorHandlingFilterAttribute
 2. Api > builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>())
+### Problem Details
+>[RFC 7231](https://tools.ietf.org/html/rfc7231#section-6.6.1)
+
+use ProblemDetail Object
