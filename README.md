@@ -107,3 +107,7 @@ dotnet user-secrets list --project BuberDinner.Api
 1. Api > Create ErrorHandlingMiddleware
 2. Api > app.UseMiddleWare<ErrorHandlingMiddleware>
 > JsonConvert.SerializeObject(Newtonsoft.Json) >> JsonSerializer.Serialize(System.Text.Json)
+
+### via FilterAttribute
+1. Api > Create ErrorHandlingFilterAttribute
+2. Api > builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>())
