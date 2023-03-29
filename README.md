@@ -125,6 +125,9 @@ use ProblemDetail Object
 
 ## Part 5 - Flow Control
 1. via Exceptions (not recommended)
+   1. Decouple이 쉽지 않다! Infrastructure Layer에서 발생한 Exception이 Application Layer에서 정의가 되어 있지 않다면 바로 Presentation으로 나간다. Application에서 Exception들을 만들고 관리 해야 하는데 구멍이 생길 수 있다.
+   2. Expected Exception인가 UnExpected Exception인가?
+   3. Exception을 사용하면 관리가 쉽지 않다!.
 2. via OneOf
 3. via FluentResults
 4. via ErrorOr & Domain Errors
