@@ -135,6 +135,7 @@ use ProblemDetail Object
 ### via OneOf
 ```bash
 dotnet add BuberDinner.Application package oneof
+dotnet add BuberDinner.Api package oneof
 ```
 1. Application > Create DuplicateEmailError
 2. Application > Update IAuthenticationService
@@ -143,3 +144,13 @@ dotnet add BuberDinner.Application package oneof
 >Rust의 Result<Result, Error>와 매우 유사함
 
 Need interface to handle more than one errors
+
+### via fluentResults
+```bash
+dotnet add BuberDinner.Application package fluentResults
+dotnet add BuberDinner.Api package fluentResults
+```
+1. Application > Update DuplicateEmailError inherit from FluentResults
+2. Application > Update IAuthenticationService
+3. Application > Update AuthenticationService
+4. Api > Update Api
