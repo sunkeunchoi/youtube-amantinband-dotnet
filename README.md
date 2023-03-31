@@ -166,3 +166,8 @@ dotnet add BuberDinner.Domain package ErrorOr
 5. Api > Update ProblemDetailsFactory (Inject ErrorCodes)
 
 ## Part 6 - CQRS + MediatR
+### Refactor to CQRS
+1. Application > Split AuthenticationService to AuthenticationCommandService & AuthenticationQueryService
+2. Application > Update DependencyInjection
+3. Api > Update AuthenticationService to AuthenticationCommandService & AuthenticationQueryService
+   
