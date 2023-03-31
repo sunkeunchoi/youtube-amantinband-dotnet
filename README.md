@@ -170,4 +170,6 @@ dotnet add BuberDinner.Domain package ErrorOr
 1. Application > Split AuthenticationService to AuthenticationCommandService & AuthenticationQueryService
 2. Application > Update DependencyInjection
 3. Api > Update AuthenticationService to AuthenticationCommandService & AuthenticationQueryService
-   
+### via MediatoR
+1. Application > Authentication/Commands/Register (RegisterCommand.cs / RegisterCommandHandler.cs)
+2. Application > Authentication/Queries/Login (LoginQuery.cs / LoginQueryHandler.cs)

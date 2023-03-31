@@ -1,5 +1,5 @@
-using BuberDinner.Application.Services.Authentication.Commands;
-using BuberDinner.Application.Services.Authentication.Queries;
+using BuberDinner.Application.Authentication.Commands.Register;
+using BuberDinner.Application.Authentication.Queries.Login;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,8 +8,8 @@ public static class DependencyInjection
 {
   public static IServiceCollection AddApplication(this IServiceCollection services)
   {
-    services.AddScoped<IAuthenticationQueryService, AuthenticationQueryService>();
-    services.AddScoped<IAuthenticationCommandService, AuthenticationCommandService>();
+    services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<RegisterCommand>());
+    services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<LoginQuery>());
     return services;
   }
 }
