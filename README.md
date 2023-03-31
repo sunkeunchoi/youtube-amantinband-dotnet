@@ -121,3 +121,46 @@ use ProblemDetail Object
 ### using Custom Problem Details Factory
 1. Api > Create ProblemDetailFactory
 2. Api > Update Program.cs > builder.Services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
+> Question?? What should I use for aws lambda route per function??
+
+## Part 5 - Flow Control
+1. via Exceptions (not recommended)
+   1. Decouple이 쉽지 않다! Infrastructure Layer에서 발생한 Exception이 Application Layer에서 정의가 되어 있지 않다면 바로 Presentation으로 나간다. Application에서 Exception들을 만들고 관리 해야 하는데 구멍이 생길 수 있다.
+   2. Expected Exception인가 UnExpected Exception인가?
+   3. Exception을 사용하면 관리가 쉽지 않다!.
+2. via OneOf
+3. via FluentResults
+4. via ErrorOr & Domain Errors
+
+### via OneOf
+```bash
+dotnet add BuberDinner.Application package oneof
+dotnet add BuberDinner.Api package oneof
+```
+1. Application > Create DuplicateEmailError
+2. Application > Update IAuthenticationService
+3. Application > Update AuthenticationService
+4. Api > Update AuthenticationController
+>Rust의 Result<Result, Error>와 매우 유사함
+
+Need interface to handle more than one errors
+
+### via fluentResults
+```bash
+dotnet add BuberDinner.Application package fluentResults
+dotnet add BuberDinner.Api package fluentResults
+```
+1. Application > Update DuplicateEmailError inherit from FluentResults
+2. Application > Update IAuthenticationService
+3. Application > Update AuthenticationService
+4. Api > Update Api
+
+### via ErrorOr
+```bash
+dotnet add BuberDinner.Domain package ErrorOr
+```
+1. Domain > Create Common/Errors Errors.User & Errors.Authentication
+2. Application > Update IAuthenticationService & AuthenticationService
+3. Api > Update AuthenticationContoller
+4. Api > Create ApiController (Only Handle Errors)
+5. Api > Update ProblemDetailsFactory (Inject ErrorCodes)
