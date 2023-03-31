@@ -1,18 +1,14 @@
-using BuberDinner.Application.Common.Errors;
+using BuberDinner.Api.Controller;
 using BuberDinner.Application.Services.Authentication;
 using BuberDinner.Contracts.Authentication;
 
-using FluentResults;
+using ErrorOr;
 
 using Microsoft.AspNetCore.Mvc;
-
-
-
 namespace BuberDinner.Api.Controllers;
 
-[ApiController]
 [Route("auth")]
-public class AuthenticationController : ControllerBase
+public class AuthenticationController : ApiController
 {
   private readonly IAuthenticationService _authenticationService;
 
@@ -24,22 +20,22 @@ public class AuthenticationController : ControllerBase
   [HttpPost("register")]
   public IActionResult Register(RegisterRequest request)
   {
-    Result<AuthenticationResult> registerResult = _authenticationService.Register(request.FirstName, request.LastName, request.Email, request.Password);
-    if (registerResult.IsSuccess)
-    {
-      return Ok(MapAuthResult(registerResult.Value));
-    }
-    var firstError = registerResult.Errors[0];
-    if (firstError is DuplicateEmailError)
-    {
-      return Problem(
-        statusCode: (int)System.Net.HttpStatusCode.Conflict,
-        title: "Email already exists"
-      );
-    }
-    return Problem();
+    ErrorOr<AuthenticationResult> registerResult = _authenticationService.Register(request.FirstName, request.LastName, request.Email, request.Password);
+    return registerResult.Match<IActionResult>(
+      success => Ok(MapAuthResult(success)),
+      errors => Problem(errors)
+    );
   }
 
+  [HttpPost("login")]
+  public IActionResult Login(LoginRequest request)
+  {
+    var authResult = _authenticationService.Login(request.Email, request.Password);
+    return authResult.Match(
+      success => Ok(MapAuthResult(success)),
+      errors => Problem(errors)
+    );
+  }
   private static AuthenticationResponse MapAuthResult(AuthenticationResult authResult)
   {
     return new AuthenticationResponse(
@@ -49,19 +45,5 @@ public class AuthenticationController : ControllerBase
               authResult.User.Email,
               authResult.Token
           );
-  }
-
-  [HttpPost("login")]
-  public IActionResult Login(LoginRequest request)
-  {
-    var authResult = _authenticationService.Login(request.Email, request.Password);
-    var response = new AuthenticationResponse(
-        authResult.User.Id,
-        authResult.User.FirstName,
-        authResult.User.LastName,
-        authResult.User.Email,
-        authResult.Token
-    );
-    return Ok(response);
   }
 }

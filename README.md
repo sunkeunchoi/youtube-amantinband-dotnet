@@ -154,3 +154,13 @@ dotnet add BuberDinner.Api package fluentResults
 2. Application > Update IAuthenticationService
 3. Application > Update AuthenticationService
 4. Api > Update Api
+
+### via ErrorOr
+```bash
+dotnet add BuberDinner.Domain package ErrorOr
+```
+1. Domain > Create Common/Errors Errors.User & Errors.Authentication
+2. Application > Update IAuthenticationService & AuthenticationService
+3. Api > Update AuthenticationContoller
+4. Api > Create ApiController (Only Handle Errors)
+5. Api > Update ProblemDetailsFactory (Inject ErrorCodes)
