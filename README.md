@@ -161,7 +161,7 @@ dotnet add BuberDinner.Domain package ErrorOr
 ```
 1. Domain > Create Common/Errors Errors.User & Errors.Authentication
 2. Application > Update IAuthenticationService & AuthenticationService
-3. Api > Update AuthenticationContoller
+3. Api > Update AuthenticationController
 4. Api > Create ApiController (Only Handle Errors)
 5. Api > Update ProblemDetailsFactory (Inject ErrorCodes)
 
@@ -173,3 +173,17 @@ dotnet add BuberDinner.Domain package ErrorOr
 ### via MediatoR
 1. Application > Authentication/Commands/Register (RegisterCommand.cs / RegisterCommandHandler.cs)
 2. Application > Authentication/Queries/Login (LoginQuery.cs / LoginQueryHandler.cs)
+
+## Part 7 - ObjectMapping via Mapster
+### Map using Mapster
+```bash
+dotnet add BuberDinner.Api package Mapster 
+dotnet add BuberDinner.Api package Mapster.DependencyInjection
+```
+1. Api > Add AuthenticationController add constructor param IMapper
+2. Api > Update Request to Command / Request to Query / Result to Response
+3. Check classes needed to be updated (AuthenticationResult to AuthenticationResponse)
+4. Api > Common/Mapping/AuthenticationMappingConfig.cs Configure mapping
+5. Api > Common/Mapping/DependencyInjection.cs
+6. Api > Create DependencyInjection.cs
+7. Api > Update Program.cs
