@@ -170,7 +170,11 @@ dotnet add BuberDinner.Domain package ErrorOr
 1. Application > Split AuthenticationService to AuthenticationCommandService & AuthenticationQueryService
 2. Application > Update DependencyInjection
 3. Api > Update AuthenticationService to AuthenticationCommandService & AuthenticationQueryService
-### via MediatoR
+### via MediatR
+```bash
+dotnet add BuberDinner.Api package MediatR
+dotnet add BuberDinner.Application package MediatR
+```
 1. Application > Authentication/Commands/Register (RegisterCommand.cs / RegisterCommandHandler.cs)
 2. Application > Authentication/Queries/Login (LoginQuery.cs / LoginQueryHandler.cs)
 
@@ -187,3 +191,13 @@ dotnet add BuberDinner.Api package Mapster.DependencyInjection
 5. Api > Common/Mapping/DependencyInjection.cs
 6. Api > Create DependencyInjection.cs
 7. Api > Update Program.cs
+
+## Part 8 - Validation Behavior via MediatR and FluentValidation
+```bash
+ dotnet add BuberDinner.Application package FluentValidation
+ dotnet add BuberDinner.Application package FluentValidation.AspNetCore #For DependencyInjection
+```
+1. Application > Common/Behaviors/ValidationBehavior.cs (Generic TRequest, TResponse)
+2. Application > Update DependencyInjection (Validation Behavior)
+3. Application > Create Authentication/Commands/Register/RegisterCommandValidation.cs
+   
