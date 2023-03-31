@@ -164,3 +164,5 @@ dotnet add BuberDinner.Domain package ErrorOr
 3. Api > Update AuthenticationContoller
 4. Api > Create ApiController (Only Handle Errors)
 5. Api > Update ProblemDetailsFactory (Inject ErrorCodes)
+
+## Part 6 - CQRS + MediatR
