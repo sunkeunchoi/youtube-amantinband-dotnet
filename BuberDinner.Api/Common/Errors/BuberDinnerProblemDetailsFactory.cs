@@ -42,6 +42,21 @@ public class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
     return problemDetails;
   }
 
+  public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext httpContext, ModelStateDictionary modelStateDictionary, int? statusCode = null, string? title = null, string? type = null, string? detail = null, string? instance = null)
+  {
+    statusCode ??= 400;
+    var problemDetails = new ValidationProblemDetails(modelStateDictionary)
+    {
+      Status = statusCode,
+      Title = title,
+      Type = type,
+      Detail = detail,
+      Instance = instance
+    };
+    ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
+    return problemDetails;
+  }
+
   private void ApplyProblemDetailsDefaults(HttpContext httpContext, ProblemDetails problemDetails, int statusCode)
   {
     problemDetails.Status ??= statusCode;
@@ -60,10 +75,5 @@ public class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
     {
       problemDetails.Extensions.Add("errorCodes", errors.Select(e => e.Code));
     }
-  }
-
-  public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext httpContext, ModelStateDictionary modelStateDictionary, int? statusCode = null, string? title = null, string? type = null, string? detail = null, string? instance = null)
-  {
-    throw new NotImplementedException();
   }
 }

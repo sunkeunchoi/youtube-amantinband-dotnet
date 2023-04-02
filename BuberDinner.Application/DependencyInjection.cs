@@ -1,5 +1,15 @@
+using System.Reflection;
+
 using BuberDinner.Application.Authentication.Commands.Register;
+using BuberDinner.Application.Authentication.Common;
 using BuberDinner.Application.Authentication.Queries.Login;
+using BuberDinner.Application.Common.Behaviors;
+
+using ErrorOr;
+
+using FluentValidation;
+
+using MediatR;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,8 +18,14 @@ public static class DependencyInjection
 {
   public static IServiceCollection AddApplication(this IServiceCollection services)
   {
-    services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<RegisterCommand>());
-    services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<LoginQuery>());
+    services.AddMediatR(cfg =>
+    {
+      cfg.RegisterServicesFromAssembly(typeof(RegisterCommandHandler).Assembly);
+      cfg.RegisterServicesFromAssembly(typeof(LoginQueryHandler).Assembly);
+      cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+    });
+    // services.AddScoped<IValidator<RegisterCommand>, RegisterCommandValidator>();
+    services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
     return services;
   }
 }
