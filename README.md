@@ -208,4 +208,6 @@ dotnet add BuberDinner.Infrastructure package Microsoft.AspNetCore.Authenticatio
 2. Api > Update Program.cs addAuthentication
 3. Infrastructure > Update DependencyInjection.cs addAuthentication
 4. Debug : this > HttpContext > User > Identity
-5. 
+5. Api > Update Program.cs addAuthorization
+6. Api > Update ApiController add `[Authorize]`
+7. Api > Update AuthenticationController add `[AllowAnonymous]`
