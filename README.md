@@ -200,4 +200,12 @@ dotnet add BuberDinner.Api package Mapster.DependencyInjection
 1. Application > Common/Behaviors/ValidationBehavior.cs (Generic TRequest, TResponse)
 2. Application > Update DependencyInjection (Validation Behavior)
 3. Application > Create Authentication/Commands/Register/RegisterCommandValidation.cs
-   
+## Part 9 - JWT Authorization
+```bash
+dotnet add BuberDinner.Infrastructure package Microsoft.AspNetCore.Authentication.JwtBearer
+```
+1. Api > Create DinnersController and ListDinners.http
+2. Api > Update Program.cs addAuthentication
+3. Infrastructure > Update DependencyInjection.cs addAuthentication
+4. Debug : this > HttpContext > User > Identity
+5. 
