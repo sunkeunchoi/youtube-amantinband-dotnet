@@ -228,6 +228,21 @@ dotnet add BuberDinner.Infrastructure package Microsoft.AspNetCore.Authenticatio
 3. Follow rules can fill start command to end event
 4. All the questions that are unanswered `HotSpot` or do investigation to see entire flow
 5. Don't do it alone!
+   
 ### Summary
 - Input : Domain knowledge, User simulations
-- Output : Entire process flows, Domain events, UseCases, Systems
+- Output : Entire process flows, Domain events, UseCases
+
+## Part 11 - Modeling Domain
+### 1. Define aggregate roots
+1. Aggregates have zero or more entities or value objects
+2. Build relationships between domains
+3. Aggregates = transactional boundary -> smaller aggregate is better (many aggregates as possible)
+4. Find entities(domain?) appear more than one aggregate -> Becomes aggregate root and other places can be referenced by it's Id value object
+5. Appear more than once -> Check responsibilities and constraints. (Eventual consistency allowed or not) > Put inside responsible aggregate root > Can be referenced by its aggregate root or introducing new object
+6. Appear only once -> Need to decide to put entire entity inside aggregate root or not
+7. Appear only once -> Before moving to other entity. Check other scenarios or entities require? (missing any thing?)
+
+### 2. Domain design
+1. Aggregate markdown > create json > actual object (createdAt, updatedAt, name, description, title...)
+2. Aggregate markdown > create csharp > methods create other entities (eg. Create, AddDinner, RemoveDinner, UpdateSection)
