@@ -211,3 +211,23 @@ dotnet add BuberDinner.Infrastructure package Microsoft.AspNetCore.Authenticatio
 5. Api > Update Program.cs addAuthorization
 6. Api > Update ApiController add `[Authorize]`
 7. Api > Update AuthenticationController add `[AllowAnonymous]`
+
+## Part 10 - Event Storming (Mapping software logic using process modeling)
+### Key Components
+1. `Actor`
+2. `Command` (From `Actor` or `Policy` on System)
+3. `Policy` (Produce `Command`)
+4. `DomainEvent` (Produce either `Policy` or `ReadModel`)
+5. `System` (Produce `DomainEvent` one or more)
+6. `HotSpot` (TODOs, "what should we do?")
+7. `ReadModel` (Response to `Actor` can be observed on `Actor`)
+   
+### How to do event storming
+1. Initial Command to last event (from CreateDinner command to DinnerEnded event)
+2. Place major domain events (pivotal events) between initial commands to last events (GuestReservedSpot, DinnerStarted, GuestArrived, GuestBilled)
+3. Follow rules can fill start command to end event
+4. All the questions that are unanswered `HotSpot` or do investigation to see entire flow
+5. Don't do it alone!
+### Summary
+- Input : Domain knowledge, User simulations
+- Output : Entire process flows, Domain events, UseCases, Systems
