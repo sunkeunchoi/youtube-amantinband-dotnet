@@ -5,7 +5,13 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": true
+        "**/Thumbs.db": true,
+        "**/obj": true,
+        "**/bin": true,
+        "BuberDinner.Api/bin": true
     },
-    "hide-files.files": []
+    "hide-files.files": [
+        "**/obj",
+        "**/bin",
+    ]
 }
