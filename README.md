@@ -246,3 +246,5 @@ dotnet add BuberDinner.Infrastructure package Microsoft.AspNetCore.Authenticatio
 ### 2. Domain design
 1. Aggregate markdown > create json > actual object (createdAt, updatedAt, name, description, title...)
 2. Aggregate markdown > create csharp > methods create other entities (eg. Create, AddDinner, RemoveDinner, UpdateSection)
+
+## Part 12 - Implementing AggregateRoot, Entity, ValueObject
