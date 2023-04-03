@@ -248,3 +248,4 @@ dotnet add BuberDinner.Infrastructure package Microsoft.AspNetCore.Authenticatio
 2. Aggregate markdown > create csharp > methods create other entities (eg. Create, AddDinner, RemoveDinner, UpdateSection)
 
 ## Part 12 - Implementing AggregateRoot, Entity, ValueObject
+## Part 13 - AggregateRoot
