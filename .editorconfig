@@ -362,3 +362,14 @@ dotnet_naming_style.s_camelcase.required_suffix =
 dotnet_naming_style.s_camelcase.word_separator = 
 dotnet_naming_style.s_camelcase.capitalization = camel_case
 
+dotnet_diagnostic.SA1600.severity = none # SA1600ElementsMustBeDocumented
+dotnet_diagnostic.SA1601.severity = none # SA1601PartialElementsMustBeDocumented
+dotnet_diagnostic.SA1602.severity = none # SA1602EnumerationItemsMustBeDocumented
+dotnet_diagnostic.SA1309.severity = none # SA1309FieldNamesMustNotBeginWithUnderscore
+dotnet_diagnostic.SA1101.severity = none # SA1101PrefixLocalCallsWithThis
+dotnet_diagnostic.CS1573.severity = none # CS1573ParameterHasNoMatchingParamTagInComment
+dotnet_diagnostic.CS1591.severity = none # CS1591MissingXmlCommentForPublicTypeOrMember
+dotnet_diagnostic.CS1712.severity = none # CS1712DoNotPrefixEnumValuesWithTypeName
+dotnet_diagnostic.IDE1006.severity = none # IDE1006Naming Styles
+dotnet_diagnostic.SA1201.service = none # SA1201ElementsMustAppearInTheCorrectOrder
+dotnet_diagnostic.SA1516.severity = none # SA1516ElementsMustBeSeparatedByBlankLine

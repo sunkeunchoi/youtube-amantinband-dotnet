@@ -1,3 +1,7 @@
+// <copyright file="BuberDinnerProblemDetailsFactory.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using System.Diagnostics;
 
 using BuberDinner.Api.Common.Http;
@@ -25,9 +29,7 @@ public class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
     string? title = null,
     string? type = null,
     string? detail = null,
-    string? instance = null
-  )
-
+    string? instance = null)
   {
     statusCode ??= 500;
     var problemDetails = new ProblemDetails
@@ -36,7 +38,7 @@ public class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
       Title = title,
       Type = type,
       Detail = detail,
-      Instance = instance
+      Instance = instance,
     };
     ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
     return problemDetails;
@@ -51,7 +53,7 @@ public class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
       Title = title,
       Type = type,
       Detail = detail,
-      Instance = instance
+      Instance = instance,
     };
     ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
     return problemDetails;
@@ -65,11 +67,13 @@ public class BuberDinnerProblemDetailsFactory : ProblemDetailsFactory
       problemDetails.Title ??= clientErrorData.Title;
       problemDetails.Type ??= clientErrorData.Link;
     }
+
     var traceId = Activity.Current?.Id ?? httpContext?.TraceIdentifier;
     if (traceId != null)
     {
       problemDetails.Extensions["traceId"] = traceId;
     }
+
     var errors = httpContext?.Items[HttpContextItemKeys.Errors] as List<Error>;
     if (errors is not null)
     {

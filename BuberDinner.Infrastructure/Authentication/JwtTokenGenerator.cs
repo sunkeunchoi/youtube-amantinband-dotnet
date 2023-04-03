@@ -1,3 +1,7 @@
+// <copyright file="JwtTokenGenerator.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -10,12 +14,12 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BuberDinner.Infrastructure.Authentication;
-public class jwtTokenGenerator : IJwtTokenGenerator
+public class JwtTokenGenerator : IJwtTokenGenerator
 {
   private readonly IDateTimeProvider _dateTimeProvider;
   private readonly JwtSettings _jwtSettings;
 
-  public jwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions)
+  public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions)
   {
     _dateTimeProvider = dateTimeProvider;
     _jwtSettings = jwtOptions.Value;
@@ -26,12 +30,13 @@ public class jwtTokenGenerator : IJwtTokenGenerator
     var signingCredentials = new SigningCredentials(
       new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
       SecurityAlgorithms.HmacSha256);
-    var claims = new[] {
+    var claims = new[]
+    {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        };
+    };
     var securityToken = new JwtSecurityToken(
       issuer: _jwtSettings.Issuer,
       audience: _jwtSettings.Audience,

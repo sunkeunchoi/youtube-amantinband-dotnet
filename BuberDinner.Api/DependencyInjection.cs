@@ -1,3 +1,6 @@
+// <copyright file="DependencyInjection.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 using BuberDinner.Api.Common.Errors;
 using BuberDinner.Api.Common.Mapping;

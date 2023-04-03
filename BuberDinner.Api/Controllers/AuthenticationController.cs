@@ -1,3 +1,7 @@
+// <copyright file="AuthenticationController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using BuberDinner.Api.Controller;
 using BuberDinner.Application.Authentication.Commands.Register;
 using BuberDinner.Application.Authentication.Common;
@@ -12,6 +16,7 @@ using MediatR;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 namespace BuberDinner.Api.Controllers;
 
 [Route("auth")]
@@ -34,8 +39,7 @@ public class AuthenticationController : ApiController
     ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(command);
     return registerResult.Match(
       authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
-      errors => Problem(errors)
-    );
+      errors => Problem(errors));
   }
 
   [HttpPost("login")]
@@ -45,7 +49,6 @@ public class AuthenticationController : ApiController
     var authResult = await _mediator.Send(query);
     return authResult.Match(
       authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
-      errors => Problem(errors)
-    );
+      errors => Problem(errors));
   }
 }

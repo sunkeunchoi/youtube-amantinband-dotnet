@@ -1,3 +1,7 @@
+// <copyright file="Rating.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using BuberDinner.Domain.Common.Models;
 
 namespace BuberDinner.Domain.Common.ValueObjects;
@@ -9,6 +13,7 @@ public sealed class Rating : ValueObject
   }
 
   public double Value { get; }
+
   public static Rating CreateNew(double rating = 0)
   {
     return new Rating(rating);

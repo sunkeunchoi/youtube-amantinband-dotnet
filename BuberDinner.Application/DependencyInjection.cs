@@ -1,3 +1,7 @@
+// <copyright file="DependencyInjection.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using System.Reflection;
 
 using BuberDinner.Application.Authentication.Commands.Register;
@@ -24,6 +28,7 @@ public static class DependencyInjection
       cfg.RegisterServicesFromAssembly(typeof(LoginQueryHandler).Assembly);
       cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
     });
+
     // services.AddScoped<IValidator<RegisterCommand>, RegisterCommandValidator>();
     services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
     return services;

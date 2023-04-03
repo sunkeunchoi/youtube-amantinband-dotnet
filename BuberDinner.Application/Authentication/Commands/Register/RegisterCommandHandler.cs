@@ -1,3 +1,7 @@
+// <copyright file="RegisterCommandHandler.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using BuberDinner.Application.Authentication.Common;
 using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
@@ -24,26 +28,25 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
   public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
   {
     await Task.CompletedTask;
+
     // 1. Check if user already exists
     if (_userRepository.GetUserByEmail(command.Email) is not null)
     {
       return Errors.User.DuplicateEmail;
     }
+
     // 2. Create User (generate unique ID)
-    var user = new User
-    (
+    var user = new User(
       command.FirstName,
       command.LastName,
       command.Email,
-      command.Password
-    );
+      command.Password);
     _userRepository.Add(user);
-    // 3. Create JWT token
 
+    // 3. Create JWT token
     string token = _jwtTokenGenerator.GenerateToken(user);
     return new AuthenticationResult(
         user,
-        token
-    );
+        token);
   }
 }

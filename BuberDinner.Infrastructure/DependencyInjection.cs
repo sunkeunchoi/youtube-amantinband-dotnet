@@ -1,3 +1,7 @@
+// <copyright file="DependencyInjection.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using System.Text;
 
 using BuberDinner.Application.Common.Interfaces.Authentication;
@@ -26,6 +30,7 @@ public static class DependencyInjection
 
     return services;
   }
+
   public static IServiceCollection AddAuth(
     this IServiceCollection services,
     IConfiguration configuration)
@@ -33,7 +38,7 @@ public static class DependencyInjection
     var jwtSettings = new JwtSettings();
     configuration.Bind(JwtSettings.SectionName, jwtSettings);
     services.AddSingleton(Options.Create(jwtSettings));
-    services.AddSingleton<IJwtTokenGenerator, jwtTokenGenerator>();
+    services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
     services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
     {
       ValidateIssuer = true,
@@ -42,7 +47,7 @@ public static class DependencyInjection
       ValidateIssuerSigningKey = true,
       ValidIssuer = jwtSettings.Issuer,
       ValidAudience = jwtSettings.Audience,
-      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
+      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)),
     });
     return services;
   }

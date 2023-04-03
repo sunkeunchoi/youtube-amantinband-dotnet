@@ -1,3 +1,7 @@
+// <copyright file="Errors.User.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using ErrorOr;
 
 namespace BuberDinner.Domain.Common.Errors;

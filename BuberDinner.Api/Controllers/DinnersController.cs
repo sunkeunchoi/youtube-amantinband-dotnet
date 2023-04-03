@@ -1,3 +1,7 @@
+// <copyright file="DinnersController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using BuberDinner.Api.Controller;
 
 using Microsoft.AspNetCore.Mvc;

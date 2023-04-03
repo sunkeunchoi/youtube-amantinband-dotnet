@@ -1,3 +1,7 @@
+// <copyright file="LoginQueryValidator.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using FluentValidation;
 
 namespace BuberDinner.Application.Authentication.Queries.Login;

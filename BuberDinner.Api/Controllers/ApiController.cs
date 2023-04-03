@@ -1,3 +1,7 @@
+// <copyright file="ApiController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using BuberDinner.Api.Common.Http;
 
 using ErrorOr;
@@ -18,10 +22,12 @@ public class ApiController : ControllerBase
     {
       return Problem();
     }
+
     if (errors.All(error => error.Type == ErrorType.Validation))
     {
       return ValidationProblem(errors);
     }
+
     HttpContext.Items[HttpContextItemKeys.Errors] = errors;
     var firstError = errors[0];
     return Problem(firstError);
@@ -34,12 +40,11 @@ public class ApiController : ControllerBase
       ErrorType.Validation => StatusCodes.Status400BadRequest,
       ErrorType.Conflict => StatusCodes.Status409Conflict,
       ErrorType.NotFound => StatusCodes.Status404NotFound,
-      _ => StatusCodes.Status500InternalServerError
+      _ => StatusCodes.Status500InternalServerError,
     };
     return Problem(
       statusCode: statusCode,
-      title: error.Description
-    );
+      title: error.Description);
   }
 
   private IActionResult ValidationProblem(List<Error> errors)
@@ -49,6 +54,7 @@ public class ApiController : ControllerBase
     {
       modelStateDictionary.AddModelError(error.Code, error.Description);
     }
+
     return ValidationProblem(modelStateDictionary);
   }
 }

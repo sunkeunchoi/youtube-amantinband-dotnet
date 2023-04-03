@@ -1,4 +1,6 @@
-
+// <copyright file="RegisterCommand.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 using BuberDinner.Application.Authentication.Common;
 
@@ -11,5 +13,4 @@ public record RegisterCommand(
     string FirstName,
     string LastName,
     string Email,
-    string Password
-) : IRequest<ErrorOr<AuthenticationResult>>;
+    string Password) : IRequest<ErrorOr<AuthenticationResult>>;
